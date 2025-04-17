@@ -6,6 +6,7 @@ import { blockLeftItems, blockRightItems } from '@/data/blocks.ts'
 import type { BlockItem } from '@/utils/types.ts'
 import { computed, ref } from 'vue'
 
+const MAX_SELECT_AVAILABLE_BLOCK_LEFT = 6
 
 const selectedBlockLeft = ref<BlockItem[]>([])
 const selectedBlockRight = ref<BlockItem | null>(null)
@@ -26,7 +27,7 @@ function onTopRightBlockUnselect() {
 }
 
 function onBottomLeftBlockSelect(item: BlockItem) {
-  if (selectedBlockLeft.value.length < 6) {
+  if (selectedBlockLeft.value.length < MAX_SELECT_AVAILABLE_BLOCK_LEFT) {
     selectedBlockLeft.value.push(item)
   }
 }
@@ -41,6 +42,7 @@ function onBottomRightBlockSelect(item: BlockItem) {
   <main class="main-container">
     <div class="main-container__top">
       <BlockSelectedMultiply :selected="selectedBlockLeft"
+                             :max-select-available="MAX_SELECT_AVAILABLE_BLOCK_LEFT"
                              class="top-block"
                              @unselect="onTopLeftBlockUnselect"
       />
@@ -67,6 +69,7 @@ function onBottomRightBlockSelect(item: BlockItem) {
     display: flex;
     justify-content: space-between;
     margin-bottom: 60px;
+    min-height: 254px;
 
     .top-block {
       max-width: 30%;
