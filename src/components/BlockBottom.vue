@@ -18,6 +18,6 @@ function onSelect(item: BlockItem) {
 
 <template>
   <div class="container-bordered">
-    <Item v-for="item of items" :name="item.name" @click="onSelect(item)" />
+    <Item v-for="item of items" :key="item.id" :name="item.name" @click="onSelect(item)" />
   </div>
 </template>

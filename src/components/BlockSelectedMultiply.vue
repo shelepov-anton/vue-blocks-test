@@ -20,7 +20,7 @@ function onUnselect(id: number) {
 <template>
   <div class="container container-bordered">
     <div class="items">
-      <Item v-for="item of selected" :name="item.name" @click="onUnselect(item.id)" />
+      <Item v-for="item of selected" :key="item.id" :name="item.name" @click="onUnselect(item.id)" />
     </div>
     <span class="selected-title">
       Selected: {{ selected.length }} / {{ maxSelectAvailable }}
